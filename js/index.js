@@ -1,48 +1,33 @@
-function validaContra(password) {
-    if (password.length < 6) {
-        alert("contrasenya massa curta");
-        return false;
-    } else {
-        alert("contrasenya correcta");
-        return true;
-    }
-}
-
-function validaDOC(doc) {
-    var docu = doc;
-    var num, ultima_lletra, lletra;
-    var expressio_regular_docu = /^[XYZ]?\d{7,8}[A-Z]$/;
-    docu = docu.toUpperCase();
-    if (expressio_regular_docu.test(docu)) {
-        num = docu.substr(0, docu.length - 1);
-        num = num.replace("X", 0);
-        num = num.replace("Y", 1);
-        num = num.replace("Z", 2);
-        ultima_lletra = docu.substr(docu.length - 1, 1);
-        alert("Ultima lletra" + ultima_lletra);
-        num = num % 23;
-        lletra = 'TRWAGYMFPDXBNJZSQVHLCKET';
-        lletra = lletra.substring(num, num + 1);
-        if (lletra !== ultima_lletra) {
-            alert('DOCUMENT erroni, la lletra no es correspon');
-            return false;
-        } else {
-            alert('Document correcte');
-            return true;
-        }
-    } else {
-        alert('DOCUMENT erroni, format no vàlid');
-        return false;
-    }
-}
-
 function validarForm() {
+    // Evitar que el formulari s'enviï per defecte
+    event.preventDefault();
+
+    // Obtenir valors del formulari
     var nom = document.getElementById("nom").value;
-    var pass = document.getElementById("password").value;
-    var doc = document.getElementById("NIF").value;
-    alert("comencem a validar ...." + nom + " " + doc);
-    if (validaContra(pass) && validaDOC(doc)) {
-        alert("Tot correcte, envie'm el teu formulari. Gracies " + nom);
-        
+    var nif = document.getElementById("NIF").value;
+    var correu = document.getElementById("email").value;
+    var contrasenya = document.getElementById("password").value;
+    var missatgeError = "";
+
+    // Validar camps
+    if (nom === "") {
+        missatgeError += "El nom és obligatori.\n";
+    }
+    if (nif === "") {
+        missatgeError += "El NIF és obligatori.\n";
+    }
+    if (correu === "") {
+        missatgeError += "El correu electrònic és obligatori.\n";
+    }
+    if (contrasenya === "") {
+        missatgeError += "La contrasenya és obligatòria.\n";
+    }
+
+    // Mostrar missatge d'error o enviar formulari
+    if (missatgeError !== "") {
+        alert(missatgeError);
+    } else {
+        // Aquí pots afegir la lògica per enviar el formulari
+        alert("Formulari enviat amb èxit.");
     }
 }

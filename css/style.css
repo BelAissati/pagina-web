@@ -249,12 +249,21 @@ ul {
 }
 
 
-
+/* formulari */
 .formulari {
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+#enviar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 /* css de la pagina de viatges */
